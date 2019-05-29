@@ -19,6 +19,7 @@ console.log(toDo)
 
 //
 console.log(`You have ${toDo.length} `)
+
 toDo.forEach(function (item,index,array) {
     console.log(`${index+1}. ${item}`) 
 })
