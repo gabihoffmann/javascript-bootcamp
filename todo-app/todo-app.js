@@ -5,50 +5,71 @@
 
 const todos = [
   {
-    text: 'ToDo 1',
+    text: 'Get the Show tickets',
     completed: true
   },
 
   {
-    text: 'ToDo 2',
+    text: 'Buy a new notebook',
     completed: false
   },
 
   {
-    text: 'ToDo 3',
+    text: 'Pay the buills',
     completed: false
   },
 
   {
-    text: 'ToDo 4',
+    text: 'JS Homework',
     completed: true
   },
 
   {
-    text: 'ToDo 5',
+    text: 'Exercise',
     completed: false
   }
 ]
 
+// filter object
+const filter = {
+  searchText: ''
+}
+
 // show in paragraph how much todos left
 // add a paragraph for each todo above
-
-//
-const todoLeft = todos.filter(function (todos) {
-  return !todos.completed
-})
-
-const sumaryLeft = document.createElement('p')
-sumaryLeft.textContent = `You have ${todoLeft.length} todos left`
-document.querySelector('body').appendChild(sumaryLeft)
-
-
-todos.forEach(function (todo) {
-  const p = document.createElement('p')
-  p.textContent = `${todo.text}`
-  document.querySelector('body').appendChild(p)
+const renderFilterTodos = function (todo , filter) {
   
-})
+  const filteredTodo = todo.filter(function (todo) {
+    return todo.text.toLowerCase().includes(filter.searchText.toLowerCase())
+  })
+
+  const todoLeft = filteredTodo.filter(function (todos) {
+      return !todos.completed
+  })
+
+  document.querySelector('#todos').innerHTML = ''
+
+  const sumaryLeft = document.createElement('h3')
+  sumaryLeft.textContent = `You have ${todoLeft.length} todos left`
+  document.querySelector('#todos').appendChild(sumaryLeft)
+
+  filteredTodo.forEach(function (todo) {
+    const p = document.createElement('p')
+    p.textContent = `${todo.text}`
+    document.querySelector('#todos').appendChild(p)
+  })
+  
+}
+
+renderFilterTodos(todos,filter)
+
+
+// todos.forEach(function (todo) {
+//   const p = document.createElement('p')
+//   p.textContent = `${todo.text}`
+//   document.querySelector('#todos').appendChild(p)
+  
+// })
 
 // Listening for a new todo create
 document.querySelector('button#new-todo').addEventListener('click', function (e) {
@@ -56,6 +77,11 @@ document.querySelector('button#new-todo').addEventListener('click', function (e)
   
 })
 
+
+
 document.querySelector('#search-todos').addEventListener('input', function (e) {
-  console.log(e.target.value)
+  //console.log(e.target.value)
+  filter.searchText = e.target.value
+  renderFilterTodos(todos, filter)
+
 })
