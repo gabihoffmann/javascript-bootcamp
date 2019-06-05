@@ -34,13 +34,18 @@ const notes = [ //open arry
     {
         title: 'Office modification',
         body: 'Get a new display'
+    },
+
+    {
+        title: 'More one note',
+        body: 'More text to the note'
     }
 ] //close array
 
 //create an object that receives the search text of eventListener input
 const filters = {
     searchText : ''
-}
+   }
 
 // render the research
 const renderNotes = function (notes, filters){
@@ -70,13 +75,13 @@ document.getElementById('create-note').addEventListener('click',function (e) {
     e.target.textContent = 'The button was clicked' 
 })
 
-document.querySelector('#remove-all').addEventListener('click',function (e) {
-    console.log('Delete all notes')
-    document.querySelectorAll('.my-notes').forEach(function (note) {
-        note.remove()
-    })  
+// document.querySelector('#remove-all').addEventListener('click',function (e) {
+//     console.log('Delete all notes')
+//     document.querySelectorAll('.my-notes').forEach(function (note) {
+//         note.remove()
+//     })  
 
-});
+// });
 
 document.querySelector('#search-notes').addEventListener('input',function (e) {
     //console.log(e.target.value)
@@ -84,3 +89,17 @@ document.querySelector('#search-notes').addEventListener('input',function (e) {
     renderNotes(notes, filters)
 })
 
+document.querySelector('#name-form').addEventListener('submit',function (e) {
+    e.preventDefault() //This is desable the browser defaul behavior (refresh) and lets we handle the data submit via code
+    console.log(e.target.elements.firstName.value)
+    e.target.elements.firstName.value = '' //clear the form input text
+})
+
+document.querySelector('#exemple-check').addEventListener('change', function (e) {
+    console.log(e.target.checked)
+})
+
+document.querySelector('#filter-by').addEventListener('change', function (e) {
+    console.log(e.target.value) // without tag value, the option return the textContent
+    
+})

@@ -32,7 +32,8 @@ const todos = [
 
 // filter object
 const filter = {
-  searchText: ''
+  searchText: '',
+  hideCompleted: false
 }
 
 // show in paragraph how much todos left
@@ -40,8 +41,12 @@ const filter = {
 const renderFilterTodos = function (todo , filter) {
   
   const filteredTodo = todo.filter(function (todo) {
-    return todo.text.toLowerCase().includes(filter.searchText.toLowerCase())
+    const searchTextMatch = todo.text.toLowerCase().includes(filter.searchText.toLowerCase())
+    const hideCompletedMatch = !filter.hideCompleted || !todo.completed
+   
+    return searchTextMatch && hideCompletedMatch
   })
+  console.log(filteredTodo)
 
   const todoLeft = filteredTodo.filter(function (todos) {
       return !todos.completed
@@ -72,10 +77,10 @@ renderFilterTodos(todos,filter)
 // })
 
 // Listening for a new todo create
-document.querySelector('button#new-todo').addEventListener('click', function (e) {
-  console.log('Add a new todo!')
+// document.querySelector('button#new-todo').addEventListener('click', function (e) {
+//   console.log('Add a new todo!')
   
-})
+// })
 
 
 
@@ -84,4 +89,22 @@ document.querySelector('#search-todos').addEventListener('input', function (e) {
   filter.searchText = e.target.value
   renderFilterTodos(todos, filter)
 
+})
+
+document.querySelector('#new-todo').addEventListener('submit', function (e) {
+  e.preventDefault()
+  console.log(e.target.elements.newTodo.value)
+  todos.push({
+    text: e.target.elements.newTodo.value,
+    completed: false
+  }) 
+  e.target.elements.newTodo.value = ''
+  renderFilterTodos(todos,filter)
+})
+
+
+document.querySelector('#check-complet').addEventListener('change', function (e) {
+  filter.hideCompleted = e.target.checked
+  console.log(`checkbox: ${filter.hideCompleted}`)
+  renderFilterTodos(todos, filter)
 })

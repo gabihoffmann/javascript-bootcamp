@@ -10,12 +10,30 @@
     <h2>Take notes and never forget</h2>
     <!-- <p class="my-notes">This application was created by Gabi Hoffmann, in the JSBootcamp </p>
     <p class="my-notes">Some note text</p> -->
+    <input id="search-notes" placeholder="Filter notes">    
+
+    <select id="filter-by">
+        <option value="byEdited">Sort by last edited</option>
+        <option value="byCreated">Sort by recently created</option>
+        <option value="alphabetical">Sort alphabetically</option>
+    </select>
 
     <div id="notes-app"> </div>
 
-    <input id="search-notes" placeholder="Filter notes">
     <button id="create-note">Create Notes</button>
-    <button id="remove-all">Delete All Notes</button>
+    <label>
+    <input id="exemple-check" type="checkbox"> Teste checkbox
+    </label>
+
+
+    <!-- <button id="remove-all">Delete All Notes</button> -->
+
+    <div class="form">
+        <form id="name-form">
+            <input placeholder="First name" name="firstName">
+            <button>Submit</button>
+        </form>
+    </div>
     <script src="note-app.js"> </script>
 </body>
 </html>

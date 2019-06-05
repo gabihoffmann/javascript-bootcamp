@@ -7,7 +7,6 @@
 <body>
     <h2> To Do App</h2>
     <h3>Take things done</h3>
-   
     <!-- Using JS to create p tags -->
     <!-- <p>Clear the kitchen</p>
     <p>Make cookies</p>
@@ -16,8 +15,17 @@
     <p>More one paragraph</p>
     <p>The test paragraph</p> -->
     <input id="search-todos" placeholder="Filter todos">
-    <button id="new-todo">Create a new todo</button>
+        <!-- <button id="new-todo">Create a new todo</button> -->
+    <label>
+        <input id="check-complet" type="checkbox"> Hide completed todos
+    </label>
     <div id="todos"></div>
+    <div class="form">
+        <form id="new-todo">
+            <input placeholder="New To Do Text" name="newTodo">
+            <button>Submit</button>
+        </form>
+    </div>
 
     <script src="todo-app.js"></script>
 </body>
